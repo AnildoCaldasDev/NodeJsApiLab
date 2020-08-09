@@ -1,0 +1,21 @@
+"use strict";
+
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+//Carregar a Rotas:
+const indexRoute = require('./routes/index-route');
+const productRoute = require('./routes/product-route');
+
+//definindo os midlewares para toda a aplicação:
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+app.use("/", indexRoute);
+app.use("/products", productRoute);
+
+module.exports = app;
