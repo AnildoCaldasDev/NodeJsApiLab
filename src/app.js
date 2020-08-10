@@ -2,8 +2,25 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 
 const app = express();
+const router = express.Router();
+
+
+//conectar ao banco NOSql
+mongoose.connect("mongodb+srv://MongoUser:<password>@cursonodejscluster.uywmy.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(conn => {
+        console.log('Banco Conectado!');
+    })
+    .catch(err => {
+        console.log('Erro ao conectar com banco de dados: ' + err);
+    })
+
+const Product = require('./models/product');
 
 //Carregar a Rotas:
 const indexRoute = require('./routes/index-route');
