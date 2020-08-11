@@ -30,6 +30,8 @@ exports.getBySlug = async (slug) => {
 };
 
 exports.create = async (data) => {
+    console.log(data);
+
     var product = new Product(data);
     await product.save();
 };
